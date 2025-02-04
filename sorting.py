@@ -46,13 +46,15 @@ PRNG = [0.315244, 0.809516, 0.857341, 0.651020, 0.113699, 0.890160, 0.176477, \
         0.456243, 0.050375, 0.382847, 0.616625, 0.757371, 0.533910, 0.235353, \
         0.966162, 0.542985, 0.351510, 0.038713, 0.513034, 0.916800, 0.178061]
 # Yes, I know that Python has a PRNG built in, but I like to make these sorting
-# algorithms practical for situations outside of this specific simulation.
-# I'm weird like that.
-# Anyway, it just seems so wasteful to use Python's RNG, with its massive memory
-# overhead, for quicksort when all it needs is just the slightest hint of
-# randomness. What if, hypothetically, you're only sorting 20 numbers? Who needs
-# 2.5 KiB of overhead memory cost just to sort 20 numbers? And I know I'm already
-# using Python's RNG for graphics and such, but again, I'm kinda weird.
+# algorithms practical for situations outside of this specific simulation. I'm 
+# weird like that. Anyway, the reason I'm making my own PRNG is that it just
+# seems so wasteful to use Python's RNG, with its massive memory overhead, for 
+# quicksort when all it needs is just the slightest hint of randomness. What 
+# if, hypothetically, you're only sorting 20 numbers? Who needs 2.5 KiB of 
+# overhead memory cost just to sort 20 numbers? And I know Python isn't exactly 
+# known for its efficiency in the first place, not to mention I'm already using 
+# Python's RNG for graphics and such, but again, I'm kinda weird, and I want to 
+# keep quicksort simple and efficient in principle, if not in practice.
 PRNGIndex = 0
 
 explodeSound = pygame.mixer.Sound("sorting/explosion2.wav")
@@ -85,8 +87,7 @@ explosionRect = explosionimg.get_rect()
 
 
 class Heap:
-    "Don't ask why I made this into an object and literally nothing else. I just don't really care."
-
+        
     def __init__(self, vals):
         global skip
         self.array = []  # The heap will be stored as an array where the root node is the first element, and
